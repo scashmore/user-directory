@@ -7,4 +7,4 @@ function List() {
     return axios.get(URL);
 };
 
-export default { List }
+export default List;

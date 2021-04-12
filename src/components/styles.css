@@ -9,4 +9,14 @@
 .container {
     display: flex;
     align-items: center;
+    width: auto;
+}
+body {
+    background-color: #296db2;
+}
+.hover {
+    cursor: pointer;
+}
+.text {
+    color: white;
 }

@@ -1,28 +1,27 @@
 import React from "react";
-import API from "../utils/API.js";
+import List from "../utils/API.js";
 import "./styles.css";
 
-class UsersRow extends React.Component {
+class Users extends React.Component {
     state = {
         users: [],
         search: "",
-        sort: "",
+        sortDirection: "",
         col: ""
     };
 
     componentDidMount() {
-        API.List()
+        List()
             .then(res => {
-                const userArr = res.data.results.map(user => {
+                const userArray = res.data.results.map(user => {
                     return {
                         first: user.name.first,
                         last: user.name.last,
                         email: user.email,
-                        dob: user.dob.date,
                         image: user.picture.medium
                     };
                 });
-                this.setState({ users: userArr });
+                this.setState({ users: userArray });
             })
             .catch(err => console.log(err));
     }
@@ -32,7 +31,7 @@ class UsersRow extends React.Component {
 
     filter() {
         const search = this.state.search.toLowerCase();
-        return this.state.user.filter(user => {
+        return this.state.users.filter(user => {
             return (
                 user.first.toLowerCase().includes(search) ||
                 user.last.toLowerCase().includes(search)
@@ -58,7 +57,6 @@ class UsersRow extends React.Component {
                         <td>
                             {user.email}
                         </td>
-                        <td>{new Date(user.dob).toDateString()}</td>
                     </tr>
                 );
             });
@@ -88,21 +86,21 @@ class UsersRow extends React.Component {
     render() {
         return (
           <>
-            <div className="">
-              <div className=""></div>
+            <div className="userContainer">
+                <div>
               <input
                 onChange={this.handleSearchChange}
                 type="search"
-                className="form"
+                className="form-control"
                 placeholder="Search"
               />
               </div>
-        <div className="">
-          <table className="">
+        <div className="table">
+          <table className="table table-striped">
             <thead>
               <tr>
-                <th scope="col">Image</th>
-                <th scope="col">
+                <th scope="col" className="text">Image</th>
+                <th scope="col" className="hover text">
                   <span
                     className={this.getRow("first")}
                     onClick={() => {
@@ -112,7 +110,7 @@ class UsersRow extends React.Component {
                     First
                   </span>
                 </th>
-                <th scope="col">
+                <th scope="col" className="hover text">
                   <span
                     className={this.getRow("last")}
                     onClick={() => this.handleDirectionChange("last")}
@@ -120,7 +118,7 @@ class UsersRow extends React.Component {
                     Last
                   </span>
                 </th>
-                <th scope="col">
+                <th scope="col" className="hover text">
                   <span
                     className={this.getRow("email")}
                     onClick={() => this.handleDirectionChange("email")}
@@ -128,22 +126,15 @@ class UsersRow extends React.Component {
                     Email
                   </span>
                 </th>
-                <th scope="col">
-                  <span
-                    className={this.getRow("dob")}
-                    onClick={() => this.handleDirectionChange("dob")}
-                  >
-                    DOB
-                  </span>
-                </th>
               </tr>
             </thead>
-            <tbody>{this.renderUsers()}</tbody>
+            <tbody className="text">{this.renderUsers()}</tbody>
           </table>
+        </div>
         </div>
       </>
     );
   }
 };
 
-export default { UsersRow }
+export default Users
