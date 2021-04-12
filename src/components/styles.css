@@ -1,0 +1,12 @@
+.header {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: #1c4966;
+    color: white;
+    min-height: 15vh;
+    display: flex;
+    justify-content: center;
+}
+.container {
+    display: flex;
+    align-items: center;
+}
