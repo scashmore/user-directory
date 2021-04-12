@@ -1,5 +1,5 @@
 import React from "react";
-import API from "../utils/Api.js";
+import API from "../utils/API.js";
 import "./styles.css";
 
 class UsersRow extends React.Component {
@@ -19,7 +19,7 @@ class UsersRow extends React.Component {
                         last: user.name.last,
                         email: user.email,
                         dob: user.dob.date,
-                        image: isSecureContext.picture.medium
+                        image: user.picture.medium
                     };
                 });
                 this.setState({ users: userArr });
@@ -88,8 +88,8 @@ class UsersRow extends React.Component {
     render() {
         return (
           <>
-            <div className="input-group justify-content-center">
-              <div className="input-group-prepend"></div>
+            <div className="">
+              <div className=""></div>
               <input
                 onChange={this.handleSearchChange}
                 type="search"
@@ -97,8 +97,8 @@ class UsersRow extends React.Component {
                 placeholder="Search"
               />
               </div>
-        <div className="table m-3">
-          <table className="table table-striped">
+        <div className="">
+          <table className="">
             <thead>
               <tr>
                 <th scope="col">Image</th>
@@ -144,5 +144,6 @@ class UsersRow extends React.Component {
       </>
     );
   }
-}
+};
+
 export default { UsersRow }
