@@ -30,4 +30,36 @@ class Users extends React.Component {
         this.setState({ search: s.target.value});
     };
 
+    filter() {
+        const search =this.state.search.toLowerCase();
+        return this.state.user.filter(user => {
+            return (
+                user.first.toLowerCase().includes(search) ||
+                user.last.toLowerCase().includes(search)
+            );
+        });
+    }
+
+    renderUsers = () => {
+        return this.filter()
+        .sort(this.sortUsers)
+        .map((user, index) => {
+            return (
+                <tr key={index}>
+                    <td>
+                        <img src={user.image} alt="img"></img>
+                    </td>
+                    <td> 
+                        {user.first}
+                    </td>
+                    <td> 
+                        {user.last}
+                    </td>
+                    <td> 
+                        {user.email}
+                    </td>
+                </tr>
+            );
+        });
+    };
 }
